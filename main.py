@@ -25,17 +25,23 @@ tighter verbs, the punch lands on the last two words.
 
 import os
 
-ENTRY = (
-    "A toaster that fires every slice out on a tiny parachute, so your "
-    "toast floats down butter-side up instead of face-planting on the "
-    "kitchen floor."
-)
+# The pitch, assembled from named parts so each clause reads on its own.
+SUBJECT = "A toaster that fires every slice out on a tiny parachute, "
+PAYOFF = "so your toast floats down butter-side up instead of "
+PUNCH = "face-planting on the kitchen floor."
+
+ENTRY = SUBJECT + PAYOFF + PUNCH
+
+
+def write_entry(text: str) -> None:
+    """Write the pitch to the gate file, exactly one sentence + newline."""
+    os.makedirs("/output", exist_ok=True)
+    with open("/output/entry.txt", "w", encoding="utf-8") as f:
+        f.write(text + "\n")
 
 
 def main() -> None:
-    os.makedirs("/output", exist_ok=True)
-    with open("/output/entry.txt", "w", encoding="utf-8") as f:
-        f.write(ENTRY + "\n")
+    write_entry(ENTRY)
 
 
 if __name__ == "__main__":
